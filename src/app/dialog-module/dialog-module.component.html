@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add Entity</h1>
+<div mat-dialog-content>
+    
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="DialogData.name">
+  </mat-form-field>
+    <mat-checkbox [(ngModel)]="DialogData.isFile"  class="example-section">Is File</mat-checkbox>
+    <div class="file" *ngIf="DialogData.isFile" >
+    <input type="file" (change)="onFileChange($event)" class="custom-file-input" accept=".jpeg,.png,.jpg" id="survey_background_img">
+    </div>
+</div>
+<div mat-dialog-actions>
+  
+  <button mat-button  cdkFocusInitial (click)="submit()">Submit</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
