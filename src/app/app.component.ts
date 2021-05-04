@@ -35,14 +35,16 @@ export class AppComponent implements OnInit {
  
   }
   refreshTreeData() {
-    this.BackendApiService.get().subscribe((data:any)=>{
-      if(data.result){
-        this.dataSource.data = data.result;
+    this.BackendApiService.get().subscribe((data1:any)=>{
+      if(data1.result){
+        this.dataSource.data = data1.result;
+        console.log(data1.result);
+        const data = this.dataSource.data;
+        this.dataSource.data = null;
+        this.dataSource.data = data;
       }
     });
-    const data = this.dataSource.data;
-    this.dataSource.data = null;
-    this.dataSource.data = data;
+    
   }
   openCustomDialog(currentNode:any): void {
    
@@ -62,6 +64,7 @@ export class AppComponent implements OnInit {
         node.type = 'dir';
         const fatherElement: any = this.service.findFatherNode(currentNode.id, this.dataSource.data);
         if(fatherElement[0]){
+          console.log(fatherElement);
           fatherElement[0].children.push(node);
           this.refreshTreeData();
         }
